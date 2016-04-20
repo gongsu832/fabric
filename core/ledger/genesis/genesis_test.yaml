@@ -46,12 +46,12 @@ peer:
     networkId: dev
 
     Dockerfile:  |
-        from hyperledger/fabric-baseimage
+        from s390xlinux/hyperledger-go1.6-rocksdb4.6:latest
         # Copy GOPATH src and install Peer
         COPY src $GOPATH/src
         RUN mkdir -p /var/hyperledger/db
         WORKDIR $GOPATH/src/github.com/hyperledger/fabric/peer/
-        RUN CGO_CFLAGS=" " CGO_LDFLAGS="-lrocksdb -lstdc++ -lm -lz -lbz2 -lsnappy" go install && cp $GOPATH/src/github.com/hyperledger/fabric/peer/core.yaml $GOPATH/bin
+        RUN CGO_CFLAGS="-I/opt/rocksdb/include" CGO_LDFLAGS="-L/opt/rocksdb -lrocksdb -lstdc++ -lm -lz -lbz2 -lsnappy" go install && cp $GOPATH/src/github.com/hyperledger/fabric/peer/core.yaml $GOPATH/bin
 
     # The Address this Peer will bind to for providing services
     address: 0.0.0.0:30303
@@ -186,7 +186,7 @@ chaincode:
 
         # This is the basis for the Golang Dockerfile.  Additional commands will be appended depedendent upon the chaincode specification.
         Dockerfile:  |
-            from hyperledger/fabric-baseimage
+            from s390xlinux/hyperledger-go1.6-rocksdb4.6:latest
             COPY src $GOPATH/src
             WORKDIR $GOPATH
 

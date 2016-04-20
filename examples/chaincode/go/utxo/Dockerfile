@@ -1,4 +1,4 @@
-from hyperledger/fabric-baseimage
+from s390xlinux/hyperledger-go1.6-rocksdb4.6:latest
 
 RUN apt-get update && apt-get install pkg-config autoconf libtool -y
 RUN cd /tmp && git clone https://github.com/bitcoin/secp256k1.git && cd secp256k1/

@@ -112,7 +112,7 @@ func getCodeChainBytesInMem() (io.Reader, error) {
 	inputbuf := bytes.NewBuffer(nil)
 	gw := gzip.NewWriter(inputbuf)
 	tr := tar.NewWriter(gw)
-	dockerFileContents := []byte("FROM busybox:latest\n\nCMD echo hello")
+	dockerFileContents := []byte("FROM s390x/busybox:latest\n\nCMD echo hello")
 	dockerFileSize := int64(len([]byte(dockerFileContents)))
 
 	tr.WriteHeader(&tar.Header{Name: "Dockerfile", Size: dockerFileSize, ModTime: startTime, AccessTime: startTime, ChangeTime: startTime})
