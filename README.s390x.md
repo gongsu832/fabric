@@ -111,6 +111,7 @@ Install docker-compose and behave if you haven't already,
 Then run the behave tests,
 
    ```
+   # killall peer
    # cd $GOPATH/src/github.com/hyperledger/fabric/bddtests
    # behave >behave.log 2>&1 &
    ```
