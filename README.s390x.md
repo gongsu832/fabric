@@ -119,3 +119,5 @@ Then run the behave tests,
 You may have a few failed and skipped tests and it's OK to ignore them if they are not "cannot connect to Docker endpoint" error mentioned below. Note that to rerun the tests, you need to clean up all the leftover containers and images except s390xlinux/hyperledger-go1.6-rocksdb4.6, hyperledger-peer, and membersrvc.
 
 If you have tests failing for reason like "cannot connect to Docker endpoint", check the IP address of interface docker0 on your system. In compose-defaults.yml file, the IP address is assumed to be 172.17.0.1. You must change it to match what you have on your system.
+
+If you have tests failing for reason like "failed to GET url http://172.17.0.2:5000/...", it's likely due to the use of http_proxy and/or https_proxy settings in your environment. Please remove these settings before performing the tests.
